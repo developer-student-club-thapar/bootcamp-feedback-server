@@ -1,3 +1,7 @@
+if(process.env.NODE_ENV !== 'production'){
+  require('dotenv/config');
+}
+
 //required packages
 const express = require("express");
 const mongoose = require("mongoose");
@@ -6,7 +10,6 @@ const Note = require("./models/Notes");
 const mongoSanitize = require('express-mongo-sanitize');
 
 
-require('dotenv').config();
 app = express();
 app.use(bodyParser.json());
 app.use(
