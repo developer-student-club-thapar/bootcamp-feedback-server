@@ -8,9 +8,9 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const Note = require("./models/Notes");
 const mongoSanitize = require('express-mongo-sanitize');
-const https = require('https')
-const path = require('path')
-const fs = require('fs')
+const https = require('https');
+const path = require('path');
+const fs = require('fs');
 const PORT = process.env.PORT; 
 
 app = express();
@@ -67,16 +67,23 @@ app.get("*", (req, res)=>{
     res.send("Page doesn't exist");
 }); 
 
+if(process.env.NODE_ENV !== 'production'){
+  app.listen(PORT || 3000, () => {
+    console.log(`Serving on port ${PORT}`);
+  });
+} else{
+  const sslServer = https.createServer(
+    {
+      key: fs.readFileSync(path.join(__dirname, 'certs', 'key.pem')),
+      cert: fs.readFileSync(path.join(__dirname, 'certs', 'cert.pem')),
+    },
+    app
+  )
+  sslServer.listen(PORT, () => console.log(`Secure Server running on port ${PORT}`));
+}
 
-const sslServer = https.createServer(
-  {
-    key: fs.readFileSync(path.join(__dirname, 'certs', 'key.pem')),
-    cert: fs.readFileSync(path.join(__dirname, 'certs', 'cert.pem')),
-  },
-  app
-)
 
-sslServer.listen(PORT, () => console.log(`Secure Server running on port ${PORT}`));
-// app.listen(PORT || 3000, () => {
-//   console.log(`Serving on port ${PORT}`);
-// });
+
+
+
+
