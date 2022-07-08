@@ -64,6 +64,6 @@ app.get("*", (req, res)=>{
     res.send("Page doesn't exist");
 }); 
 
-app.listen(3000, () => {
-  console.log("Serving on port 3000");
+app.listen(PORT || 3000, () => {
+  console.log(`Serving on port ${PORT}`);
 });
