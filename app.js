@@ -8,7 +8,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const Note = require("./models/Notes");
 const mongoSanitize = require('express-mongo-sanitize');
-
+const PORT = process.env.PORT; 
 
 app = express();
 app.use(bodyParser.json());
