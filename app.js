@@ -4,7 +4,6 @@ if(process.env.NODE_ENV !== 'production'){
 
 //required packages
 const express = require("express");
-var cors = require('cors')
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const Note = require("./models/Notes");
