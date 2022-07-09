@@ -1,0 +1,13 @@
+version: '3.4'
+services:
+  serv-review:
+    image: serv-review:latest
+    container_name: serv-review-api
+    ports:
+      - "5001:5001"
+    environment:
+      - db_connection=mongodb+srv://dsc:dsctiet@cluster0.sh2s9b5.mongodb.net/servreview?retryWrites=true&w=majority
+      - PORT=5001
+    build:
+      context: .
+      dockerfile: Dockerfile
