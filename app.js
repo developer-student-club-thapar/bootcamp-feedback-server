@@ -59,7 +59,8 @@ app.post("/", async (req, res) => {
     res.json(note);
   } catch (e) {
     console.log(e);
-    res.send("error");
+    res.statusCode = 500;
+    res.send(e.message);
   }
 });
 
