@@ -68,7 +68,7 @@ app.get("*", (req, res)=>{
 }); 
 
 if(process.env.NODE_ENV !== 'production'){
-  app.listen(PORT || 3000, () => {
+    app.listen(PORT || 3000, () => {
     console.log(`Serving on port ${PORT}`);
   });
 } else{
