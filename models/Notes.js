@@ -12,6 +12,9 @@ const UserSchema = new Schema({
   linkedin:{
     type: String
   },
+  github: {
+    type: String
+  },
   twitter:{
     type: String
   },
