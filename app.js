@@ -13,6 +13,7 @@ const path = require('path');
 const fs = require('fs');
 const PORT = process.env.PORT; 
 const cors = require('cors');
+const { count } = require('console');
 
 
 app = express();
@@ -50,7 +51,7 @@ db.once("open", () => {
 app.get("/", async (req, res) => {
   try {
     console.log(req.body);
-    const notes = await Note.find({});
+    const notes = await Note.find({}, { passphrase: 0 });
     res.json(notes);
   } catch (e) {
     console.log(e);
@@ -70,6 +71,24 @@ app.post("/", async (req, res) => {
     res.send(e.message);
   }
 });
+
+app.delete("/",async(req,res)=>{
+  try{
+    const {passphrase} = req.body;
+    console.log(passphrase); 
+    const sentNote = await Note.findById(req.body._id); 
+    if(sentNote.passphrase === passphrase){
+      Note.remove(sentNote);
+      res.send('Deleted Successfully')
+    }else{
+      res.send('Incorrect passphrase'); 
+    }
+  }catch(e){
+    console.log(e,'Error in deleting note'); 
+  }
+})
+
+
 
 app.get("*", (req, res)=>{
     res.send("Page doesn't exist");

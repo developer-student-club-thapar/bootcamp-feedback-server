@@ -20,6 +20,9 @@ const UserSchema = new Schema({
   },
   insta:{
     type: String
+  },
+  passphrase:{
+    type: String
   }
 });
 
