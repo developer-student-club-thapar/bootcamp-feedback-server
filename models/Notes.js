@@ -22,7 +22,8 @@ const UserSchema = new Schema({
     type: String
   },
   passphrase:{
-    type: String
+    type: String,
+    required: true
   }
 });
 
