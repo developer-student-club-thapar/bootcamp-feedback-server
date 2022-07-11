@@ -1,0 +1,20 @@
+name: Deploy
+on: 
+  push:
+    branches: [ master ]
+  workflow_dispatch:
+
+jobs:
+  deploy_code:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Decrypt ansible.gpg
+        run: pg --quiet --batch --yes --decrypt --passphrase="$LARGE_SECRET_PASSPHRASE" --output ansible ansible.gpg
+        env:
+          LARGE_SECRET_PASSPHRASE: ${{ secrets.LARGE_SECRET_PASSPHRASE }}
+      - name: Run ansible playbook
+        uses: dawidd6/action-ansible-playbook@v2.5.0
+        with:
+          playbook: playbooks/redeploy.yml
+          directory: ./
+          vault_password_file: ansible
