@@ -9,6 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Decrypt ansible.gpg
+        with:
+          directory: ./
         run: gpg --quiet --batch --yes --decrypt --passphrase="$LARGE_SECRET_PASSPHRASE" --output ansible ansible.gpg
         env:
           LARGE_SECRET_PASSPHRASE: ${{ secrets.LARGE_SECRET_PASSPHRASE }}
@@ -18,3 +20,4 @@ jobs:
           playbook: playbooks/redeploy.yml
           directory: ./
           vault_password_file: ansible
+        run: ansible-playbook playbooks/redeploy.yml -vvv
