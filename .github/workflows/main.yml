@@ -8,6 +8,8 @@ jobs:
   deploy_code:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
+      
       - name: Decrypt ansible.gpg
         run: gpg --quiet --batch --yes --decrypt --passphrase="$LARGE_SECRET_PASSPHRASE" --output ansible ansible.gpg
         env:
