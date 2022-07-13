@@ -7,6 +7,10 @@ on:
 jobs:
   tests:
     uses: ./.github/workflows/tests.yml
+    secrets:
+      DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
+      DOCKER_HUB_ACCESS_TOKEN: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+      
   deploy_code:
     needs: [tests]
     runs-on: ubuntu-latest
