@@ -16,7 +16,7 @@ const cors = require('cors');
 const { count } = require('console');
 
 
-app = express();
+const app = express();
 app.use(cors())
 app.use(bodyParser.json());
 app.use(
@@ -98,6 +98,7 @@ app.delete("/deleteall/:pass", async(req,res)=>{
     console.log(e); 
     res.send('error in deleting all records'); 
   }
+
 })
 
 
