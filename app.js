@@ -50,7 +50,6 @@ db.once("open", () => {
 
 app.get("/", async (req, res) => {
   try {
-    console.log(req.body);
     const notes = await Note.find({}, { passphrase: 0 });
     res.json(notes);
   } catch (e) {
@@ -75,10 +74,9 @@ app.post("/", async (req, res) => {
 app.delete("/",async(req,res)=>{
   try{
     const {passphrase} = req.body;
-    console.log(passphrase); 
     const sentNote = await Note.findById(req.body._id); 
     if(sentNote.passphrase === passphrase){
-      Note.remove(sentNote);
+      await Note.remove(sentNote);
       res.send('Deleted Successfully')
     }else{
       res.send('Incorrect passphrase'); 
