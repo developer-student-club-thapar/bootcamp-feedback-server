@@ -98,7 +98,6 @@ app.delete("/deleteall/:pass", async(req,res)=>{
     console.log(e); 
     res.send('error in deleting all records'); 
   }
-
 })
 
 
