@@ -86,19 +86,19 @@ app.delete("/",async(req,res)=>{
   }
 })
 
-app.delete("/deleteall/:pass", async(req,res)=>{
-  try{
-    if(req.params.pass === "dsc69"){
-      await Note.deleteMany({});
-      res.send('all records deleted'); 
-    }else{
-      res.send('wrong pass'); 
-    }
-  }catch(e){
-    console.log(e); 
-    res.send('error in deleting all records'); 
-  }
-})
+// app.delete("/deleteall/:pass", async(req,res)=>{
+//   try{
+//     if(req.params.pass === "dsc"){
+//       await Note.deleteMany({});
+//       res.send('all records deleted'); 
+//     }else{
+//       res.send('wrong pass'); 
+//     }
+//   }catch(e){
+//     console.log(e); 
+//     res.send('error in deleting all records'); 
+//   }
+// })
 
 
 
