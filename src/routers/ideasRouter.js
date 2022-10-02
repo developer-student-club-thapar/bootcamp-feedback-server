@@ -29,7 +29,9 @@ router.post("/ideas", async (req, res) => {
 
 router.delete("/ideas", async (req, res) => {
     try {
-        await Idea.findOneAndDelete({ '_id': req.body._id });
+        if (!await Idea.findOneAndDelete({ '_id': req.body._id, 'passphrase': req.body.passphrase })) {
+            throw new Error('Wrong passphrase');
+        }
         res.send('Deleted Successfully')
     } catch (e) {
         console.log(e);

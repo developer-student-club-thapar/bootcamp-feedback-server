@@ -29,7 +29,7 @@ router.post("/notes", async (req, res) => {
 
 router.delete("/notes", async (req, res) => {
     try {
-        if (!await Note.findOneAndDelete(req.body)) {
+        if (!await Note.findOneAndDelete({ '_id': req.body._id, 'passphrase': req.body.passphrase })) {
             throw new Error('Wrong passphrase');
         }
         res.send('Deleted Successfully');
