@@ -5,23 +5,23 @@ const UserSchema = new Schema({
     type: String,
     required: true,
   },
-  message: {
-    type: String,
+  message:{
+    type: String, 
     required: true
   },
-  linkedin: {
+  linkedin:{
     type: String
   },
   github: {
     type: String
   },
-  twitter: {
+  twitter:{
     type: String
   },
-  insta: {
+  insta:{
     type: String
   },
-  passphrase: {
+  passphrase:{
     type: String,
     required: true
   }
