@@ -3,7 +3,7 @@
       tasks:
         - name: Git pull and redeploy
           shell: |
-            cd /home/dsc/Bootcamp-2022/bootcamp-feedback-server
+            cd /home/raghav/DSC/Bootcamp-2022/bootcamp-feedback-server
             git pull
             docker-compose down
             docker-compose up --build -d
