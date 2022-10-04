@@ -44,18 +44,4 @@ router.delete("/notes", async (req, res) => {
   }
 });
 
-// router.delete("/notes/deleteall/:pass", async(req,res)=>{
-//   try{
-//     if(req.params.pass === "dsc"){
-//       await Note.deleteMany({});
-//       res.send('all records deleted');
-//     }else{
-//       res.send('wrong pass');
-//     }
-//   }catch(e){
-//     console.log(e);
-//     res.send('error in deleting all records');
-//   }
-// })
-
 module.exports = router;
