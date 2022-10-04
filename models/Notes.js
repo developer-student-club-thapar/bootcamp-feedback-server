@@ -7,24 +7,28 @@ const UserSchema = new Schema({
   },
   message: {
     type: String,
-    required: true
+    required: true,
   },
   linkedin: {
-    type: String
+    type: String,
   },
   github: {
-    type: String
+    type: String,
   },
   twitter: {
-    type: String
+    type: String,
   },
   insta: {
-    type: String
+    type: String,
   },
   passphrase: {
     type: String,
-    required: true
-  }
+    required: true,
+  },
+  event: {
+    type: Array,
+    required: true,
+  },
 });
 
 module.exports = mongoose.model("Note", UserSchema);

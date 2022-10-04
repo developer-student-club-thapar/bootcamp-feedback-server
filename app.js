@@ -1,20 +1,20 @@
-if (process.env.NODE_ENV !== 'production') {
-  require('dotenv/config');
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv/config");
 }
 
 //required packages
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
-const mongoSanitize = require('express-mongo-sanitize');
-const cors = require('cors');
-const https = require('https');
-const path = require('path');
-const fs = require('fs');
+const mongoSanitize = require("express-mongo-sanitize");
+const cors = require("cors");
+const https = require("https");
+const path = require("path");
+const fs = require("fs");
 
 // routers
-const notesRouter = require('./routers/notesRouter');
-const ideasRouter = require('./routers/ideasRouter');
+const notesRouter = require("./routers/notesRouter");
+const ideasRouter = require("./routers/ideasRouter");
 
 const PORT = process.env.PORT;
 
@@ -29,13 +29,15 @@ app.use(
 
 app.use(
   mongoSanitize({
-    replaceWith: '_',
-  }),
+    replaceWith: "_",
+  })
 );
 
-app.use(cors({
-  origin: '*'
-}));
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 
 app.use(notesRouter);
 app.use(ideasRouter);
@@ -53,17 +55,19 @@ app.get("*", (req, res) => {
   res.send("Page doesn't exist");
 });
 
-if (process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV !== "production") {
   app.listen(PORT || 3000, () => {
     console.log(`Serving on port ${PORT}`);
   });
 } else {
   const sslServer = https.createServer(
     {
-      key: fs.readFileSync(path.join(__dirname, 'certs', 'key.pem')),
-      cert: fs.readFileSync(path.join(__dirname, 'certs', 'cert.pem')),
+      key: fs.readFileSync(path.join(__dirname, "certs", "key.pem")),
+      cert: fs.readFileSync(path.join(__dirname, "certs", "cert.pem")),
     },
     app
-  )
-  sslServer.listen(PORT, () => console.log(`Secure Server running on port ${PORT}`));
+  );
+  sslServer.listen(PORT, () =>
+    console.log(`Secure Server running on port ${PORT}`)
+  );
 }
