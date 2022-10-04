@@ -38,7 +38,23 @@ router.delete("/notes", async (req, res) => {
         res.statusCode = 500;
         res.send(e.message);
     }
-})
+});
+
+router.put("/notes", async (req, res) => {
+    try {
+        const updatedNote = await Note.findOneAndUpdate({ '_id': req.body._id, 'passphrase': req.body.passphrase }, { name: req.body.name, message: req.body.message, linkedin: req.body.linkedin, github: req.body.github, twitter: req.body.twitter, insta: req.body.insta });
+        
+        if (!updatedNote) {
+            throw new Error('Wrong passphrase');
+        }
+        res.status(200).json(updatedNote);
+    } catch (error) {
+        console.log(error);
+        res.statusCode = 500;
+        res.send(error.message);
+    }
+});
+
 
 // router.delete("/notes/deleteall/:pass", async(req,res)=>{
 //   try{
