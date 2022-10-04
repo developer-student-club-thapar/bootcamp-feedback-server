@@ -26,7 +26,7 @@ const UserSchema = new Schema({
     required: true,
   },
   event: {
-    type: Array,
+    type: string,
     required: true,
   },
 });
