@@ -13,6 +13,20 @@ router.get("/notes", async (req, res) => {
   }
 });
 
+router.get("/:event", async (req, res) => {
+  try {
+    const notes = await Note.find(
+      { event: `${req.params.event}` },
+      { passphrase: 0 }
+    );
+    res.json(notes);
+  } catch (e) {
+    console.log(e);
+    res.statusCode = 500;
+    res.send(e.message);
+  }
+});
+
 router.post("/notes", async (req, res) => {
   try {
     const note = new Note(req.body);

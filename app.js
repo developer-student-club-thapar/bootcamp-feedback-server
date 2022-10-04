@@ -14,7 +14,6 @@ const fs = require("fs");
 
 // routers
 const notesRouter = require("./routers/notesRouter");
-const ideasRouter = require("./routers/ideasRouter");
 
 const PORT = process.env.PORT;
 
@@ -40,7 +39,6 @@ app.use(
 );
 
 app.use(notesRouter);
-app.use(ideasRouter);
 
 mongoose.connect(process.env.db_connection, {});
 
