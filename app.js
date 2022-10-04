@@ -2,7 +2,6 @@ if (process.env.NODE_ENV !== "production") {
   require("dotenv/config");
 }
 
-//required packages
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
