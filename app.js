@@ -31,11 +31,7 @@ app.use(
   })
 );
 
-app.use(
-  cors({
-    origin: "*",
-  })
-);
+app.use(cors());
 
 app.use(notesRouter);
 
